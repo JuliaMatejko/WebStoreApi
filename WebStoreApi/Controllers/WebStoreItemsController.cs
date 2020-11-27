@@ -21,7 +21,7 @@ namespace WebStoreApi.Controllers
         }
 
         // GET: api/WebStoreItems
-        [HttpGet]
+        [HttpGet("GetAllItems")]
         public async Task<ActionResult<IEnumerable<WebStoreItemDTO>>> GetWebStoreItems()
         {
             return await _context.WebStoreItems
@@ -30,7 +30,7 @@ namespace WebStoreApi.Controllers
         }
 
         // GET: api/WebStoreItems/5
-        [HttpGet("{id}")]
+        [HttpGet("GetItem{id}")]
         public async Task<ActionResult<WebStoreItemDTO>> GetWebStoreItem(ulong id)
         {
             var webStoreItem = await _context.WebStoreItems.FindAsync(id);
@@ -45,7 +45,7 @@ namespace WebStoreApi.Controllers
 
         // PUT: api/WebStoreItems/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        [HttpPut("UpdateItem{id}")]
         public async Task<IActionResult> UpdateWebStoreItem(ulong id, WebStoreItemDTO webStoreItemDTO)
         {
             if (id != webStoreItemDTO.Id)
@@ -86,7 +86,7 @@ namespace WebStoreApi.Controllers
 
         // POST: api/WebStoreItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpPost("PostItem")]
         public async Task<ActionResult<WebStoreItemDTO>> CreateWebStoreItem(WebStoreItemDTO webStoreItemDTO)
         {
             var webStoreItem = new WebStoreItem
@@ -106,7 +106,7 @@ namespace WebStoreApi.Controllers
         }
 
         // DELETE: api/WebStoreItems/5
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteItem{id}")]
         public async Task<IActionResult> DeleteWebStoreItem(ulong id)
         {
             var webStoreItem = await _context.WebStoreItems.FindAsync(id);

@@ -1,22 +1,24 @@
 name: .NET
 
 on:
-  push:
-    branches: [ master ]
+  push: ~
   pull_request:
     branches: [ master ]
 
 jobs:
-  build:
-
+  linter:
     runs-on: ubuntu-latest
-
+    steps: 
+      - name: "Perform some static code analysis"
+        run: echo "All is fine"
+  build:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 5.0.101
     - name: Restore dependencies
       run: dotnet restore
     - name: Build

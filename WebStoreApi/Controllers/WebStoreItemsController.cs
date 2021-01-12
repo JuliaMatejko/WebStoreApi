@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebStoreApi.Models;
@@ -20,7 +18,7 @@ namespace WebStoreApi.Controllers
             _context = context;
         }
 
-        // GET: api/WebStoreItems
+        // GET: api/WebStoreItems/GetAllItems
         [HttpGet("GetAllItems")]
         public async Task<ActionResult<IEnumerable<WebStoreItemDTO>>> GetWebStoreItems()
         {
@@ -29,7 +27,7 @@ namespace WebStoreApi.Controllers
                 .ToListAsync();
         }
 
-        // GET: api/WebStoreItems/5
+        // GET: api/WebStoreItems/GetItem5
         [HttpGet("GetItem{id}")]
         public async Task<ActionResult<WebStoreItemDTO>> GetWebStoreItem(ulong id)
         {
@@ -43,8 +41,7 @@ namespace WebStoreApi.Controllers
             return ItemToDTO(webStoreItem);
         }
 
-        // PUT: api/WebStoreItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // PUT: api/WebStoreItems/UpdateItem5
         [HttpPut("UpdateItem{id}")]
         public async Task<IActionResult> UpdateWebStoreItem(ulong id, WebStoreItemDTO webStoreItemDTO)
         {
@@ -84,8 +81,7 @@ namespace WebStoreApi.Controllers
             return NoContent();
         }
 
-        // POST: api/WebStoreItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST: api/WebStoreItems/PostItem
         [HttpPost("PostItem")]
         public async Task<ActionResult<WebStoreItemDTO>> CreateWebStoreItem(WebStoreItemDTO webStoreItemDTO)
         {
@@ -105,7 +101,7 @@ namespace WebStoreApi.Controllers
             return CreatedAtAction(nameof(GetWebStoreItem), new { id = webStoreItem.Id }, ItemToDTO(webStoreItem));
         }
 
-        // DELETE: api/WebStoreItems/5
+        // DELETE: api/WebStoreItems/DeleteItem5
         [HttpDelete("DeleteItem{id}")]
         public async Task<IActionResult> DeleteWebStoreItem(ulong id)
         {
